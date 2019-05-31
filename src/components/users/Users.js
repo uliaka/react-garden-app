@@ -19,7 +19,7 @@ class User extends React.Component {
 
 function SortButton(props) {
   return (
-    <button onClick={props.sortUsers}>Sort by name</button>
+      <button onClick={props.sortOnClick}>{props.title}</button>
   )
 }
 
@@ -27,7 +27,8 @@ function UserList(props) {
   return (
     <div>
       <h1> Users list </h1>
-      <SortButton sortUsers={props.sortUsers}/>
+      <SortButton sortOnClick={props.sortUsersByName} title="Sort by name"/>
+      <SortButton sortOnClick={props.sortUsersByAge} title="Sort by age"/>
      {props.users.map(item => <User data={item}/>)}
     </div>
   )
@@ -41,24 +42,22 @@ class UserGenery extends React.Component {
     }
   }
 
-  sortUsers() {
+  sortUsersByName() {
     const users = this.state.users;
-    const sortedUsers = users.sort(function(a, b) {
-      if (a.name > b.name) {
-        return 1;
-      }
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
-    })
+    const sortedUsers = users.sort((a, b) => a.name > b.name ? 1 : -1)
+    this.setState({ users: sortedUsers })
+  }
+
+  sortUsersByAge() {
+    const users = this.state.users;
+    const sortedUsers = users.sort((a, b) => a.age > b.age ? 1 : -1)
     this.setState({ users: sortedUsers })
   }
 
   render() {
     return (
       <div>
-        <UserList users={this.state.users} sortUsers={this.sortUsers.bind(this)}/>
+        <UserList users={this.state.users} sortUsersByName={this.sortUsersByName.bind(this)} sortUsersByAge={this.sortUsersByAge.bind(this)}/>
       </div>
     )
   }
