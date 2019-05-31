@@ -1,0 +1,25 @@
+.user_block {
+  border: 1px solid green;
+  padding: 20px;
+  color: green;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+span {
+  border: 1px solid black;
+  padding: 4px;
+}
+
+.age {
+  color: white;
+  background-color: green;
+  border-radius: 10px;
+}
+
+.role {
+  color: green;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid green;
+  margin-left: 5px;
+}
