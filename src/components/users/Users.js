@@ -34,12 +34,52 @@ function UserList(props) {
   )
 }
 
+function PagePagination(props) {
+  const pages = [];
+  for(let i = 1; i <= props.pagesCount; i++) {
+    pages.push(i);
+  }
+  return (
+    <div>
+      {pages.map((p) => (
+        <span
+          className={p === props.activePage ? 'active-page' : 'page'}
+          onClick={() => {props.setActivePage(p)}}>
+          {p}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+const config = {
+  usersPerPage: 4,
+}
+
 class UserGenery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       users: usersData,
+      pagesCount: this.calculatePageCount(usersData.length, config.usersPerPage),
+      activePage: 1,
     }
+  }
+
+  calculatePageCount(usersLen, usersPerPage) {
+    return Math.floor(usersLen / usersPerPage) + 1;
+  }
+
+  activePageUsers(users, activePageNumber, usersPerPage) {
+    const lastUserIndex = activePageNumber * usersPerPage;
+    const firstUserIndex = lastUserIndex - usersPerPage;
+    return users.slice(firstUserIndex, lastUserIndex)
+  }
+
+  setActivePage(newActivePageNumber) {
+    this.setState({
+      activePage: newActivePageNumber,
+    })
   }
 
   sortUsersByName() {
@@ -55,9 +95,19 @@ class UserGenery extends React.Component {
   }
 
   render() {
+    const { users, activePage, pagesCount } = this.state;
     return (
       <div>
-        <UserList users={this.state.users} sortUsersByName={this.sortUsersByName.bind(this)} sortUsersByAge={this.sortUsersByAge.bind(this)}/>
+        <UserList
+          users={this.activePageUsers(users, activePage, config.usersPerPage)}
+          sortUsersByName={this.sortUsersByName.bind(this)}
+          sortUsersByAge={this.sortUsersByAge.bind(this)}
+        />
+        <PagePagination
+          pagesCount={pagesCount}
+          activePage={activePage}
+          setActivePage={this.setActivePage.bind(this)}
+          />
       </div>
     )
   }

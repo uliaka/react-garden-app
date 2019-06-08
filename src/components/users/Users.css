@@ -23,3 +23,15 @@ span {
   border: 1px solid green;
   margin-left: 5px;
 }
+
+.page {
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
+.active-page {
+  cursor: pointer;
+  background-color: white;
+  color: green;
+}
