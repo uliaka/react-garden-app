@@ -41,7 +41,7 @@ function PagePagination(props) {
   }
   return (
     <div>
-      {pages.map((p) => (
+      {pages.map((pn) => (
         <span
           className={p === props.activePage ? 'active-page' : 'page'}
           onClick={() => {props.setActivePage(p)}}>
