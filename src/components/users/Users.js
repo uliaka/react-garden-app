@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import './Users.css';
-import usersData from'./UsersData'
+import usersData from './UsersData'
+import { UserContext } from '../../UserProvider.js'
+
 
 class User extends React.Component {
   render() {
@@ -41,7 +43,7 @@ function PagePagination(props) {
   }
   return (
     <div>
-      {pages.map((pn) => (
+      {pages.map((p) => (
         <span
           className={p === props.activePage ? 'active-page' : 'page'}
           onClick={() => {props.setActivePage(p)}}>
@@ -55,6 +57,7 @@ function PagePagination(props) {
 const config = {
   usersPerPage: 4,
 }
+
 
 class UserGenery extends React.Component {
   constructor(props) {
@@ -95,20 +98,24 @@ class UserGenery extends React.Component {
   }
 
   render() {
-    const { users, activePage, pagesCount } = this.state;
+    const { activePage, pagesCount } = this.state;
     return (
-      <div>
-        <UserList
-          users={this.activePageUsers(users, activePage, config.usersPerPage)}
-          sortUsersByName={this.sortUsersByName.bind(this)}
-          sortUsersByAge={this.sortUsersByAge.bind(this)}
-        />
-        <PagePagination
-          pagesCount={pagesCount}
-          activePage={activePage}
-          setActivePage={this.setActivePage.bind(this)}
-          />
-      </div>
+      <UserContext.Consumer>
+        {({ users }) => (
+          <div>
+            <UserList
+              users={this.activePageUsers(users, activePage, config.usersPerPage)}
+              sortUsersByName={this.sortUsersByName.bind(this)}
+              sortUsersByAge={this.sortUsersByAge.bind(this)}
+            />
+            <PagePagination
+              pagesCount={pagesCount}
+              activePage={activePage}
+              setActivePage={this.setActivePage.bind(this)}
+            />
+          </div>
+        )}
+      </UserContext.Consumer>
     )
   }
 }
