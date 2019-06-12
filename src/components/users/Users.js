@@ -97,6 +97,7 @@ class UserGenery extends React.Component {
     this.setState({ users: sortedUsers })
   }
 
+
   render() {
     const { activePage, pagesCount } = this.state;
     return (
@@ -113,7 +114,7 @@ class UserGenery extends React.Component {
               activePage={activePage}
               setActivePage={this.setActivePage.bind(this)}
             />
-          </div>
+         </div>
         )}
       </UserContext.Consumer>
     )

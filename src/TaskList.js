@@ -73,7 +73,6 @@ class TaskApp extends React.Component {
     }, 3000)
   }
   addTask(task) {
-
     this.setState({
       taskList: this.state.taskList.concat([task]),
     })
