@@ -1,3 +1,7 @@
+*:focus {
+  outline: none;
+}
+
 .user_block {
   border: 1px solid green;
   padding: 20px;
@@ -34,4 +38,43 @@ span {
   cursor: pointer;
   background-color: white;
   color: green;
+}
+
+.style-error {
+  color: red;
+  font-size: 90%;
+}
+
+.form-create-user {
+  background-color: #F5F5DC;
+  width: 250px;
+  padding: 45px;
+  margin: 0 auto;
+  border: outset 1px #DCDCDC;
+}
+
+.form-create-user h2 {
+  color: #556B2F;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.form-create-user label {
+ width: 150px;
+ margin-top: 3px;
+ display: block;
+ padding: 10px;
+ border-bottom:1px solid #eee;
+}
+
+.form-create-user input {
+   height: 20px;
+   width: 220px;
+   padding: 5px;
+ }
+
+.form-create-user button {
+  color: white;
+  background-color: #6B8E23;
+  margin-left: 180px;
 }
