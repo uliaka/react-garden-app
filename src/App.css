@@ -9,7 +9,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ECDADA;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,16 +19,22 @@
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
 
 a:visited {
-  color: green;
+  color: #ffffff;
 }
 
 .nav-link {
-  color: green;
+  color: #ffffff;
+  float: right;
+  display: inline;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 @keyframes App-logo-spin {
@@ -38,4 +44,13 @@ a:visited {
   to {
     transform: rotate(360deg);
   }
+}
+
+body{
+  background-color: #F3F1F1;
+  font-family: Gill Sans, sans-serif;
+}
+
+.head{
+  background-color: #8A1076;
 }

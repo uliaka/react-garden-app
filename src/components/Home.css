@@ -1,0 +1,17 @@
+.box-info{
+  height: 450px;
+  background: rgba(0, 0, 0, .65) url("../img/home_kids.jpg")no-repeat;
+  background-blend-mode: darken;
+  color: #ffffff;
+  border: 4px solid #B153F0;
+  font-size: 1.3em;
+}
+
+h1{
+  padding: 10px;
+}
+
+h2{
+  padding: 10px;
+  font-size: 1.2em;
+}

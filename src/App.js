@@ -10,12 +10,14 @@ import { UserProvider } from './UserProvider'
 function App() {
   return (
     <UserProvider>
-      <span className="nav-link">
-        <Link to="/">Home</Link>
-      </span>
-      <span className="nav-link">
-        <Link to="/users">Users list</Link>
-      </span>
+     <div className="head">
+        <span className="nav-link">
+          <Link to="/">Home</Link>
+        </span>
+        <span className="nav-link">
+          <Link to="/users">Users list</Link>
+        </span>
+      </div>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/users" component={Users} />

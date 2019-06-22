@@ -8,12 +8,10 @@ import { UserContext } from '../../UserProvider.js'
 class User extends React.Component {
   render() {
     return (
-      <div>
-          <div class="user_block">
-            <h1>{this.props.data.name}</h1>
-            <span class="age"> {this.props.data.age} years old</span>
-            <span class="role">{this.props.data.role}</span>
-         </div>
+      <div className="user_block">
+        <h1>{this.props.data.name}</h1>
+        <span className="age"> {this.props.data.age} years old</span>
+        <span className="role">{this.props.data.role}</span>
       </div>
     )
   }
@@ -29,8 +27,10 @@ function UserList(props) {
   return (
     <div>
       <h1> Users list </h1>
-      <SortButton sortOnClick={props.sortUsersByName} title="Sort by name"/>
-      <SortButton sortOnClick={props.sortUsersByAge} title="Sort by age"/>
+      <div className="sort-button-container">
+        <SortButton sortOnClick={props.sortUsersByName} title="Sort by name"/>
+        <SortButton sortOnClick={props.sortUsersByAge} title="Sort by age"/>
+      </div>
      {props.users.map(item => <User data={item}/>)}
     </div>
   )
@@ -103,17 +103,19 @@ class UserGenery extends React.Component {
     return (
       <UserContext.Consumer>
         {({ users }) => (
-          <div>
+          <div className="user-list-container">
             <UserList
               users={this.activePageUsers(users, activePage, config.usersPerPage)}
               sortUsersByName={this.sortUsersByName.bind(this)}
               sortUsersByAge={this.sortUsersByAge.bind(this)}
             />
-            <PagePagination
-              pagesCount={pagesCount}
-              activePage={activePage}
-              setActivePage={this.setActivePage.bind(this)}
-            />
+            <div className="padding-container">
+              <PagePagination
+                pagesCount={pagesCount}
+                activePage={activePage}
+                setActivePage={this.setActivePage.bind(this)}
+              />
+            </div>
          </div>
         )}
       </UserContext.Consumer>
