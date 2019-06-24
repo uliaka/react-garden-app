@@ -34,7 +34,7 @@
 }
 
 .avatar-user {
-  width: 50px;
+  width: 40px;
   border-radius: 50px;
   float: left;
 }
@@ -59,4 +59,45 @@
   padding-left: 10px;
   text-align: left;
   color: #998DB3;
+}
+
+.chat-list-container {
+  color: #FFFFFF;
+}
+
+.user {
+  min-height: 42px;
+  border-bottom: 3px solid;
+  border-color: #3F3553;
+  padding: 9px;
+}
+
+
+.users-chatting {
+  text-align: left;
+  float: left;
+  text-align: left;
+}
+
+.user-messages {
+  color: #BCB7C7;
+}
+
+.user-block {
+  clear: both;
+  display: inline-block;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.user-block .avatar-user {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.active-user {
+  background-color: #675B81;
 }
