@@ -8,11 +8,26 @@ import avatarUser from '../../img/avatar-user.png'
 class Chat extends React.Component {
   state = {
     activeUser: 2,
+    searchUser: "",
+  }
+
+  handleSearchCahnge(value) {
+    this.setState({
+      searchUser: value,
+    })
   }
 
   setActiveUser(userIndex) {
     this.setState({
       activeUser: userIndex,
+    });
+  }
+
+  filterList(users) {
+    const { searchUser } = this.state;
+    return users.filter(function(user) {
+      return user.name.toLowerCase().search(
+        searchUser.toLowerCase()) !== -1;
     });
   }
 
@@ -35,10 +50,15 @@ class Chat extends React.Component {
                   </div>
                 </div>
                 <div className="separator">
-                  Chat
+                  <input
+                    type="text"
+                    className="filter"
+                    placeholder="CHAT"
+                    onChange={(e) => {this.handleSearchCahnge(e.target.value)}}
+                   />
                 </div>
                 <div className="chat-list-container">
-                  {users.map((user, index) => (
+                  {this.filterList(users).map((user, index) => (
                     <div
                       className={"user-block user" + (index === this.state.activeUser ? ' active-user' : '') }
                       onClick={() => this.setActiveUser(index)}

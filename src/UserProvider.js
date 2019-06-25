@@ -17,7 +17,7 @@ class UserProvider extends React.Component {
       { name: 'Vova', role: 'student', group: '6', age: '23' },
       { name: 'Gala', role: 'sofware', group: '1', age: '19' },
       { name: 'Hihi', role: 'student', group: '4', age: '21'},
-    ]
+    ],
   }
 
   addUser(user) {
