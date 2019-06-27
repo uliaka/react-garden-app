@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Chat.css';
 import { UserContext } from '../../UserProvider.js'
 import avatarUser from '../../img/avatar-user.png'
+import set from '../../img/set.jpg'
 
 
 class Chat extends React.Component {
@@ -75,6 +76,45 @@ class Chat extends React.Component {
                 </div>
               </div>
               <div className="messages-container">
+                <div className="message-title">
+                  <div className="partner-container">
+                    <img className="avatar-user"
+                      src={avatarUser}
+                    />
+                    <div className="partner-info">
+                      <span className="partner-name">Michailo</span>
+                      <span className="partner-status">Online</span>
+                    </div>
+                  </div>
+                  <div className="setting-messages">
+                    <img className="setting-img"/>
+                  </div>
+                </div>
+                <div className="messages-place">
+                  <div className="conversation-block">
+                    <div className="partner-message-block">
+                      <img className="avatar-user"
+                        src={avatarUser}
+                      />
+                      <div className="partner-message">Hello! How are you?</div>
+                      <div className="partner-time-block">11:02</div>
+                    </div>
+                    <div className="user-message-block">
+                      <img className="avatar-user"
+                        src={avatarUser}
+                      />
+                     <div className="user-message">Hello! Fine.</div>
+                     <div className="user-time-block">11:12</div>
+                    </div>
+                  </div>
+                  <div className="writing-place">
+                  <input
+                    type="text"
+                    className="message"
+                    placeholder="Type something..."
+                   />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

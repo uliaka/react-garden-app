@@ -22,7 +22,7 @@
 .messages-container {
   display: inline-block;
   width: 70%;
-  min-height: 400px;
+  min-height: 500px;
   background-color: #FFFFFF;
   border-radius: 0 20px 20px 0;
 
@@ -100,4 +100,102 @@
 
 .active-user {
   background-color: #675B81;
+}
+
+.message-title {
+  border-bottom: 3px solid;
+  border-color: #E1E5EB;
+  display: inline-block;
+  width: 100%;
+}
+
+.partner-container {
+  display: inline-block;
+  padding: 20px;
+  float: left;
+}
+.partner-container .avatar-user {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.partner-info {
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.partner-name {
+  color: #504E5D;
+  border: none;
+}
+
+.partner-status {
+  color: #4F875F;
+  border: none;
+}
+
+.messages-place {
+  height: 100%;
+  display: block;
+}
+
+.conversation-block {
+  width: 100%;
+  height: 85%;
+  display: block;
+}
+
+.partner-message-block {
+  display: block;
+  text-align: left;
+  margin: 30px 30px 30px 10px;
+}
+
+.user-message-block {
+  display: block;
+  text-align: left;
+  margin: 30px 10px 30px 30px;
+}
+
+.partner-message-block .avatar-user {
+  width: 20px;
+}
+
+.user-message-block .avatar-user {
+  width: 20px;
+  float: right;
+}
+
+.partner-message {
+  border-radius: 50px 50px 50px 5px;
+  background-color: #EDEFF5;
+  width: auto;
+  padding: 10px;
+  color: #504E5D;
+  display: inline-block;
+}
+
+.user-message {
+  border-radius: 50px 50px 5px 50px;
+  background-color: #5275EF;
+  width: auto;
+  padding: 10px;
+  color: #FFFFFF;
+  display: inline-block;
+  float: right;
+}
+
+.partner-time-block {
+  font-size: 10px;
+  padding-left: 40px;
+  color: #B1AFB9;
+}
+
+.user-time-block {
+  font-size: 10px;
+  text-align: right;
+  padding-right: 40px;
+  color: #B1AFB9;
+  clear: both;
 }
