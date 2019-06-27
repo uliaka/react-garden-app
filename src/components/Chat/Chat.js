@@ -107,14 +107,14 @@ class Chat extends React.Component {
                      <div className="user-time-block">11:12</div>
                     </div>
                   </div>
-                  <div className="writing-place">
-                  <input
-                    type="text"
-                    className="message"
-                    placeholder="Type something..."
-                   />
-                  </div>
                 </div>
+                  <div className="writing-place">
+                    <input
+                      type="text"
+                      className="message"
+                      placeholder="Type something..."
+                     />
+                  </div>
               </div>
             </div>
           </div>

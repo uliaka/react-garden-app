@@ -5,7 +5,7 @@
 }
 
 .chat-container {
-  min-height: 400px;
+  min-height: 600px;
   width: 90%;
   display: inline-block;
 }
@@ -14,7 +14,7 @@
   display: inline-block;
   background-color: #433858;
   width: 30%;
-  min-height: 400px;
+  min-height: 600px;
   border-radius: 20px 0 0 20px;
   float: left;
 }
@@ -22,7 +22,7 @@
 .messages-container {
   display: inline-block;
   width: 70%;
-  min-height: 500px;
+  min-height: 600px;
   background-color: #FFFFFF;
   border-radius: 0 20px 20px 0;
 
@@ -61,15 +61,25 @@
   color: #998DB3;
 }
 
+.filter {
+  background-color: #493E5E;
+  border: none;
+  color: #998DB3;
+}
+
 .chat-list-container {
   color: #FFFFFF;
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .user {
   min-height: 42px;
   border-bottom: 3px solid;
   border-color: #3F3553;
-  padding: 9px;
+  padding-top: 9px;
+  padding-bottom: 9px;
 }
 
 
