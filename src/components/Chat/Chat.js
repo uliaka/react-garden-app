@@ -51,15 +51,21 @@ class Chat extends React.Component {
     this.sendMessage(this.state.text);
 }
 
-  sendMessage(message){
-    const { messages } = this.state
+  sendMessage(message) {
+    const { messages } = this.state;
     messages.push({
       member: "user",
       text: message,
+      timestamp: "12:30"
     })
-    this.setState({ messages })
+    this.setState({ messages });
+    this.resetMessage();
   }
-  
+
+  resetMessage() {
+      this.setState({ text: "" })
+  }
+
   render() {
     return (
       <UserContext.Consumer>
@@ -121,19 +127,12 @@ class Chat extends React.Component {
                 <div className="messages-place">
                 {this.state.messages.map((message) => (
                   <div className="conversation-block">
-                    <div className="partner-message-block">
+                    <div className={(message.member === "partner" ? "partner" : "user") + "-message-block"}>
                       <img className="avatar-user"
                         src={avatarUser}
                       />
-                      <div className="partner-message">{message.member === "partner" ? message.text : '' }</div>
-                      <div className="partner-time-block">{message.timestamp}</div>
-                    </div>
-                    <div className="user-message-block">
-                      <img className="avatar-user"
-                        src={avatarUser}
-                      />
-                     <div className="user-message">{message.member === "user" ? message.text : '' }</div>
-                     <div className="user-time-block">{message.timestamp}</div>
+                      <div className={(message.member === "partner" ? "partner" : "user") + "-message"}>{message.text}</div>
+                      <div className={(message.member === "partner" ? "partner" : "user") + "-time-block"}>{message.timestamp}</div>
                     </div>
                   </div>
                   ))}
