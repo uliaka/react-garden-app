@@ -20,6 +20,7 @@ class Chat extends React.Component {
   this.onChange = this.onChange.bind(this)
   this.onSubmit = this.onSubmit.bind(this)
   this.sendMessage = this.sendMessage.bind(this)
+  this.onPressEnter = this.onPressEnter.bind(this)
 }
 
   handleSearchCahnge(value) {
@@ -44,6 +45,13 @@ class Chat extends React.Component {
 
   onChange(e) {
     this.setState({ text: e.target.value });
+  }
+
+  onPressEnter(e) {
+    if (e.keyCode === 13) {
+      this.sendMessage(this.state.text);
+      this.resetMessage();
+    }
   }
 
   onSubmit(e) {
@@ -145,6 +153,7 @@ class Chat extends React.Component {
                         placeholder="Type something..."
                         value={this.state.text}
                         onChange={(e) => this.onChange(e)}
+                        onKeyDown={(e) => this.onPressEnter(e)}
                        />
                        <button
                          className="send-message"
