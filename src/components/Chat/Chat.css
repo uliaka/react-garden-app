@@ -25,6 +25,7 @@
   min-height: 600px;
   background-color: #FFFFFF;
   border-radius: 0 20px 20px 0;
+  position: relative;
 
 }
 
@@ -160,40 +161,48 @@
   display: block;
   text-align: left;
   margin: 30px 30px 30px 10px;
+  position: relative;
 }
 
 .user-message-block {
   display: block;
   text-align: left;
   margin: 30px 10px 30px 30px;
+  position: relative;
 }
 
 .partner-message-block .avatar-user {
   width: 20px;
+  position: absolute;
+  bottom: 10px;
 }
 
 .user-message-block .avatar-user {
   width: 20px;
-  float: right;
+  position: absolute;
+  margin-left: 97%;
+  bottom: 10px;
 }
 
 .partner-message {
   border-radius: 50px 50px 50px 5px;
   background-color: #EDEFF5;
   width: auto;
-  padding: 10px;
+  padding: 18px;
   color: #504E5D;
   display: inline-block;
+  margin-left: 25px;
 }
 
 .user-message {
   border-radius: 50px 50px 5px 50px;
   background-color: #5275EF;
   width: auto;
-  padding: 10px;
+  padding: 18px;
   color: #FFFFFF;
   display: inline-block;
   float: right;
+  margin-right: 25px;
 }
 
 .partner-time-block {
@@ -208,4 +217,33 @@
   padding-right: 40px;
   color: #B1AFB9;
   clear: both;
+}
+
+.wrapper-writing-place {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  left: 15px;
+  height: 5%;
+}
+
+.writing-place {
+  width: 100%;
+  border: solid 2px;
+  border-radius: 5px;
+  border-color: #BBC1CB;
+  height: 100%;
+}
+
+.message {
+  float: left;
+  border: none;
+  margin: 5px;
+  width: 80%;
+}
+
+.send-message {
+  float: right;
+  margin: 5px;
+  width: 10%;
 }

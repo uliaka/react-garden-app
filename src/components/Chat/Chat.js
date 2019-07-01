@@ -3,14 +3,24 @@ import axios from 'axios';
 import './Chat.css';
 import { UserContext } from '../../UserProvider.js'
 import avatarUser from '../../img/avatar-user.png'
-import set from '../../img/set.jpg'
 
 
 class Chat extends React.Component {
-  state = {
-    activeUser: 2,
-    searchUser: "",
-  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUser: 2,
+      searchUser: "",
+      messages: [
+        { member: "partner", text: 'Hi! How are you?', timestamp: '11:30'},
+        { member: "user", text: 'Hi! Fine', timestamp: '11:56' },
+      ],
+      text: "",
+   }
+  this.onChange = this.onChange.bind(this)
+  this.onSubmit = this.onSubmit.bind(this)
+  this.sendMessage = this.sendMessage.bind(this)
+}
 
   handleSearchCahnge(value) {
     this.setState({
@@ -32,6 +42,24 @@ class Chat extends React.Component {
     });
   }
 
+  onChange(e) {
+    this.setState({ text: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.sendMessage(this.state.text);
+}
+
+  sendMessage(message){
+    const { messages } = this.state
+    messages.push({
+      member: "user",
+      text: message,
+    })
+    this.setState({ messages })
+  }
+  
   render() {
     return (
       <UserContext.Consumer>
@@ -91,30 +119,41 @@ class Chat extends React.Component {
                   </div>
                 </div>
                 <div className="messages-place">
+                {this.state.messages.map((message) => (
                   <div className="conversation-block">
                     <div className="partner-message-block">
                       <img className="avatar-user"
                         src={avatarUser}
                       />
-                      <div className="partner-message">Hello! How are you?</div>
-                      <div className="partner-time-block">11:02</div>
+                      <div className="partner-message">{message.member === "partner" ? message.text : '' }</div>
+                      <div className="partner-time-block">{message.timestamp}</div>
                     </div>
                     <div className="user-message-block">
                       <img className="avatar-user"
                         src={avatarUser}
                       />
-                     <div className="user-message">Hello! Fine.</div>
-                     <div className="user-time-block">11:12</div>
+                     <div className="user-message">{message.member === "user" ? message.text : '' }</div>
+                     <div className="user-time-block">{message.timestamp}</div>
                     </div>
                   </div>
+                  ))}
                 </div>
-                  <div className="writing-place">
-                    <input
-                      type="text"
-                      className="message"
-                      placeholder="Type something..."
-                     />
-                  </div>
+                  <div className="wrapper-writing-place">
+                    <div className="writing-place">
+                      <input
+                        type="text"
+                        className="message"
+                        placeholder="Type something..."
+                        value={this.state.text}
+                        onChange={(e) => this.onChange(e)}
+                       />
+                       <button
+                         className="send-message"
+                         onClick={(e) => this.onSubmit(e)}
+                         >Send
+                       </button>
+                    </div>
+                 </div>
               </div>
             </div>
           </div>
