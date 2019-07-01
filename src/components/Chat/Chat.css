@@ -147,13 +147,14 @@
 }
 
 .messages-place {
-  height: 100%;
+  height: 400px;
   display: block;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .conversation-block {
   width: 100%;
-  height: 85%;
   display: block;
 }
 
