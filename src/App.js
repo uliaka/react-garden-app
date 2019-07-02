@@ -7,6 +7,7 @@ import Home from './components/Home.js'
 import Chat from './components/Chat/Chat.js'
 import  { Route, Switch, Link } from "react-router-dom";
 import { UserProvider } from './UserProvider'
+import { MessageProvider } from './MessageProvider'
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/users" component={Users} />
         <Route path="/create" component={CreateUser} />
+        <MessageProvider>
         <Route path="/chat" component={Chat} />
+        </MessageProvider>
       </Switch>
     </UserProvider>
   );
