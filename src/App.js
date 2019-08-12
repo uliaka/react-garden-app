@@ -17,7 +17,7 @@ function App() {
           <Link to="/">Home</Link>
         </span>
         <span className="nav-link">
-          <Link to="/users">Users list</Link>
+          <Link to="/users">User list</Link>
         </span>
         <span className="nav-link">
           <Link to="/create">Create User</Link>
