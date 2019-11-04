@@ -1,10 +1,29 @@
 var express = require('express');
 var childrenService = require ('../services/childrenService.js');
+var childrenParentsService = require('../services/childrenParentsService.js')
 var router  = express.Router();
 
 router.post('/', function(req, res, next) {
   childrenService.createChild(req.body)
   .then((data) =>  res.status(201).send(data))
+  .catch((error) => next(error));
+});
+
+router.post('/:id/parents', function(req, res, next) {
+  const parents = req.body.parents
+  if (!Array.isArray(parents)) {
+    res.status(401).send({ error: 'incorest data' });
+  }
+  childrenParentsService.addChildrenToParents(
+    parents.map((parent) => ({ parentsId: parent, childrenId: req.params.id })),
+    )
+  .then((data) => res.status(201).send(data))
+  .catch((error) => next(error));
+});
+
+router.get('/:id/parents', function(req, res, next) {
+  childrenParentsService.getParentsdByChildId(req.params.id)
+  .then((data) => res.json({ data }))
   .catch((error) => next(error));
 });
 

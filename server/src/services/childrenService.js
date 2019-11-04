@@ -2,7 +2,7 @@ var models  = require('../models/index.js');
 
 const childrenModel = models.children;
 
-const createChild = (parent) => childrenModel.create(parent); 
+const createChild = (child) => childrenModel.create(child); 
 
 const getChildren = () => childrenModel.findAll();
 
