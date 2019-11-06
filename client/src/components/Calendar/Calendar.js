@@ -141,13 +141,10 @@ export default class Calendar extends React.Component {
           date: currentSelectedDate,
           dynamic: true
         };
-
         newEvents.push(newEvent);
-
         for (var i = 0; i < newEvents.length; i++) {
           monthEvents.push(newEvents[i]);
         }
-
         this.setState({
           selectedMonthEvents: monthEvents
         });
