@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Users from './components/users/Users.js'
 import CreateUser from './components/users/CreateUser.js'
@@ -7,7 +6,9 @@ import Home from './components/Home.js'
 import Chat from './components/Chat/Chat.js'
 import  { Route, Switch, Link } from "react-router-dom";
 import { UserProvider } from './UserProvider'
-import { MessageProvider } from './MessageProvider'
+import { MessageProvider } from './MessageProvider';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
@@ -39,3 +40,10 @@ function App() {
 }
 
 export default App;
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
