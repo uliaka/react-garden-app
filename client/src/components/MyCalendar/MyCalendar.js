@@ -1,28 +1,36 @@
 import React from 'react';
 import moment from 'moment';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import './MyCalendar.css';
+import Card from '@material-ui/core/Card';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
-export default class MyCalendar extends React.Component {
+
+class MyCalendar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      date: moment()
-    }
+
     this.getDaysInMounth = this.getDaysInMounth.bind(this)
     this.firstDayOfMonth = this.firstDayOfMonth.bind(this)
+    this.getCurrentMounth = this.getCurrentMounth.bind(this)
   }
-  getCurrentDate() {
-    return moment().date()
+
+  getCurrentMounth() {
+    return moment().startOf('month').format('MMMM YYYY');
   }
   getDaysInMounth() {
     return moment().daysInMonth();;
   }
-
   firstDayOfMonth() {
-    const firstDayOfMonth = moment(this.state.date).startOf('month').format('d');
+    const firstDayOfMonth = moment().startOf('month').format('d');
     return firstDayOfMonth
+  }
+  getCurrentDay() {
+    return moment().format("D");
   }
 
   render() {
@@ -38,23 +46,29 @@ export default class MyCalendar extends React.Component {
     let emptyDayOfMounth = [];
     for (let i = 0; i < this.firstDayOfMonth(); i++) {
       emptyDayOfMounth.push(
-        <td>{""}</td>
+        <TableCell>{""}</TableCell>
       );
     }
 
     let daysInMonth = [];
     for (let d = 1; d <= this.getDaysInMounth(); d++) {
+      let currentDay = '';
+      if (d === +this.getCurrentDay()) {
+        currentDay = "today"
+      } else {
+        currentDay = '';
+      }
+      console.log('cuurent', currentDay)
       daysInMonth.push(
-        <td key={d}>
+        <TableCell key={d} className={`calendar-day ${currentDay}`}>
           {d}
-        </td>
+        </TableCell>
       );
     }
 
-    var totalGrid = [...emptyDayOfMounth, ...daysInMonth];
+    let totalGrid = [...emptyDayOfMounth, ...daysInMonth];
     let rows = [];
     let cells = [];
-    console.log("totalGrid", totalGrid)
     totalGrid.forEach((row, i) => {
       if (i % 7 !== 0) {
         cells.push(row);
@@ -69,20 +83,22 @@ export default class MyCalendar extends React.Component {
     });
 
     let viewDaysInMounth = rows.map((d, i) => {
-      return <tr>{d}</tr>;
+      return <TableRow>{d}</TableRow>;
     });
 
     return (
-      <div className='my-calendar'>
-        <table>
-          <thead>
-            <tr>{weekDaysName}</tr>
-          </thead>
-          <tbody>{viewDaysInMounth}</tbody>
-        </table>
-      </div>
+      <Card className='my-calendar'>
+        <Table>
+          <caption>{this.getCurrentMounth()}</caption>
+          <TableHead className='calendar-head'>
+            <TableRow>{weekDaysName}</TableRow>
+          </TableHead>
+          <TableBody>{viewDaysInMounth}</TableBody>
+        </Table>
+      </Card>
     );
   }
 }
 
 
+export default MyCalendar;
