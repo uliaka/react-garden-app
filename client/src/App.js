@@ -9,6 +9,7 @@ import { UserProvider } from './UserProvider'
 import { MessageProvider } from './MessageProvider';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
+import MyCalendar from '../src/components/MyCalendar/MyCalendar.js';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         <span className="nav-link">
           <Link to="/chat">Chat</Link>
         </span>
+        <span className="nav-link">
+          <Link to="/calendar">Calendar</Link>
+        </span>
       </div>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -33,6 +37,7 @@ function App() {
         <Route path="/create" component={CreateUser} />
         <MessageProvider>
         <Route path="/chat" component={Chat} />
+        <Route path="/calendar" component={MyCalendar} />
         </MessageProvider>
       </Switch>
     </UserProvider>
