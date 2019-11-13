@@ -12,11 +12,28 @@ import TableRow from '@material-ui/core/TableRow';
 class MyCalendar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      events: [
+        {
+          title: "swimming",
+          date: moment().format("D")
+        },
+        {
+          title: "dancing",
+          date: moment().format("D")
+        },
+        {
+          title: "singing",
+          date: moment().add(1, 'days').format("D"),
+        },
+      ]
+    }
 
 
     this.getDaysInMounth = this.getDaysInMounth.bind(this)
     this.firstDayOfMonth = this.firstDayOfMonth.bind(this)
     this.getCurrentMounth = this.getCurrentMounth.bind(this)
+    this.getEventsInDay = this.getEventsInDay.bind(this)
   }
 
   getCurrentMounth() {
@@ -33,6 +50,11 @@ class MyCalendar extends React.Component {
     return moment().format("D");
   }
 
+  getEventsInDay(d) {
+    let eventsInDay = []
+    eventsInDay = this.state.events.filter(event => Number.parseInt(event.date) === d);
+    return eventsInDay.length;
+  }
   render() {
     const daysName = moment.weekdaysShort()
     const weekDaysName = daysName.map(day => {
@@ -52,16 +74,11 @@ class MyCalendar extends React.Component {
 
     let daysInMonth = [];
     for (let d = 1; d <= this.getDaysInMounth(); d++) {
-      let currentDay = '';
-      if (d === +this.getCurrentDay()) {
-        currentDay = "today"
-      } else {
-        currentDay = '';
-      }
-      console.log('cuurent', currentDay)
+      let currentDay = d === +this.getCurrentDay() ? "today" : '';
       daysInMonth.push(
         <TableCell key={d} className={`calendar-day ${currentDay}`}>
           {d}
+          <div>{this.getEventsInDay(d)}</div>
         </TableCell>
       );
     }
