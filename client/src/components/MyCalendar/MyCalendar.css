@@ -3,17 +3,58 @@ body {
 }
 .my-calendar {
   width: 30%;
+  min-width: 400px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
-  box-shadow: 0px 0px 10px #888888;
+  box-shadow: 3px 4px 10px #807a7a;
 }
 
 .calendar-day {
   font-size: 10px;
+  position: relative;
 }
 
 .today {
   background-color: bisque;
 }
+
+.no-events {
+  display: none;
+}
+
+.show-events {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  border: 1px solid green;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.add-button {
+  position: absolute;
+  top: 70%;
+  left: 90%;
+  height: 40px;
+  width: 80px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.btn {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  text-align: center;
+  background: rgb(241, 207, 131);
+}
+  
+.btn span {
+    position: relative;
+    top: 11px;
+  }
