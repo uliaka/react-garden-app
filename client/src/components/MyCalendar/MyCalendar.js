@@ -151,7 +151,7 @@ class MyCalendar extends React.Component {
             </Table>
             <div onClick={this.showAddEventsForm} className="add-button btn">
               <span>Add event</span>
-              </div>
+            </div>
           </Card>
         </>
       )
@@ -162,7 +162,7 @@ class MyCalendar extends React.Component {
       console.log("eventsInDay", eventsInDay)
       return (
         <EventsDetails
-        eventsInDay={eventsInDay}
+          eventsInDay={eventsInDay}
         />
       )
     }
@@ -205,44 +205,47 @@ class Events extends React.Component {
   render() {
     //let date = moment(this.state.date, "DD-MM-YYYY").format("DD-MM-YYYY");
     return (
-      <Card>
-        <form onSubmit={this.handleSubmit} className="form-add-event">
-          <label>
-            Title:
-          <input
+      <Card className="form-add-event">
+        <form onSubmit={this.handleSubmit}>
+          <label className="input-event">
+            <input
               type="text"
               name="title"
               value={this.state.title}
               onChange={this.handleInputChange}
             />
+            <span className="label">Title</span>
+            <span className="border"></span>
           </label>
-          <label>
-            Time:
+          <label className="input-event">
+            <input
+              type="text"
+              name="time"
+              value={this.state.time}
+              onChange={this.handleInputChange}
+            />
+            <span className="label">Time</span>
+            <span className="border"></span>
           </label>
-          <input
-            type="text"
-            name="time"
-            value={this.state.time}
-            onChange={this.handleInputChange}
-          />
-          <label>
-            Date:
-          <input
+          <label className="input-event">
+            <input
               type="text"
               name="date"
               value={this.state.date}
               onChange={this.handleInputChange}
             />
-            <button
+            <span className="label">Date</span>
+            <span className="border"></span>
+            </label>
+            <div className="add-event btn"
               type='submit'
               onClick={() => {
                 this.props.onAddEvents(this.state)
                 this.props.closeAddEventsForm()
               }}
             >
-              Add events
-            </button>
-          </label>
+              <span>Add event </span>
+            </div>
         </form>
       </Card>
     );
@@ -251,14 +254,14 @@ class Events extends React.Component {
 
 const EventsDetails = (props) => {
   console.log("props", props.eventsInDay)
-    return (
-      <Card>
-        <div>Details event</div>
-        <div>{props.eventsInDay.map(e => {
-          // eslint-disable-next-line no-unused-expressions
-          <span>{e.title}</span>
-        })}</div>
-      </Card>
+  return (
+    <Card>
+      <div>Details event</div>
+      <div>{props.eventsInDay.map(e => {
+        // eslint-disable-next-line no-unused-expressions
+        <span>{e.title}</span>
+      })}</div>
+    </Card>
 
   )
 }

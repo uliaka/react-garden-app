@@ -43,18 +43,87 @@ body {
   cursor: pointer;
 }
 
+.add-event {
+  position: absolute;
+  cursor: pointer;
+  height: 40px;
+  width: 80px;
+  margin: 30px 20px 20px 0;
+}
+
 .btn {
+  font-family: inherit;
   display: block;
   position: relative;
   overflow: hidden;
   text-decoration: none;
-  color: black;
+  color: rgb(43, 41, 41);
   font-size: 14px;
   text-align: center;
   background: rgb(241, 207, 131);
 }
   
 .btn span {
-    position: relative;
-    top: 11px;
-  }
+  position: relative;
+  top: 11px;
+}
+
+.form-add-event {
+  width: 30%;
+  min-width: 400px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.input-event {
+  position: relative;
+  margin: auto;
+  width: 100%;
+  max-width: 280px;
+}
+.input-event .label {
+  position: absolute;
+  left: 0;
+  font-size: 20px;
+  color: #6e6e6e;
+  margin-top: 3px;
+}
+.input-event .border {
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: #07f;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  transition: all 0.15s ease;
+}
+.input-event input {
+  width: 100%;
+  border: 0;
+  margin-top: 20px;
+  font-family: inherit;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 2px solid #c8ccd4;
+}
+.input-event input:hover {
+  background-color: rgba(34,50,84,0.03);
+}
+
+.input-event input:focus {
+  background-color: none;
+  outline: none;
+}
+.input-eventinput:focus + span {
+  color: #07f;
+  transform: translateY(-26px) scale(0.75);
+}
+.input-event input:focus + span + .border {
+  transform: scaleX(1);
+}
