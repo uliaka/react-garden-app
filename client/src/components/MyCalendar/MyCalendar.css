@@ -9,6 +9,7 @@ body {
   margin-right: auto;
   padding: 20px;
   box-shadow: 3px 4px 10px #807a7a;
+  text-align: center;
 }
 
 .calendar-day {
@@ -18,6 +19,58 @@ body {
 
 .today {
   background-color: bisque;
+}
+.wrapper-mounth {
+  position: relative;
+}
+
+.button-prev, .button-next {
+  cursor: pointer;
+  height: 17px;
+  overflow: hidden;
+  position: absolute;
+  width: 10px;
+  top:4px;
+}
+
+.button-prev {
+  left: 0;
+} 
+
+.button-next {
+  right:0;
+}
+
+.button-prev:before, .button-next:before {
+  background-color: black;
+  content: "";
+  height: 17px;
+  left: 5px;
+  position: absolute;
+  top: 0;
+  transform: rotate(45deg);
+  width: 17px;
+}
+
+.button-next:before {
+  left: auto;
+  right: 5px;
+}
+
+.button-prev:after, .button-next:after {
+  background-color: white;
+  content: "";
+  height: 17px;
+  left: 8px;
+  position: absolute;
+  top: 0;
+  transform: rotate(45deg);
+  width: 17px;
+}
+
+.button-next:after {
+  left: auto;
+  right: 8px;
 }
 
 .no-events {

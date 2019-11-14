@@ -7,6 +7,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 
 class MyCalendar extends React.Component {
@@ -27,9 +29,11 @@ class MyCalendar extends React.Component {
           date: '13-11-2019',
         },
       ],
+      date: moment(),
       showAddEventsForm: false,
       showEventsDetails: false,
       selectedDay: ""
+
     }
 
 
@@ -44,13 +48,13 @@ class MyCalendar extends React.Component {
   }
 
   getCurrentMounth() {
-    return moment().startOf('month').format('MMMM YYYY');
+    return this.state.date.startOf('month').format('MMMM YYYY');
   }
   getDaysInMounth() {
-    return moment().daysInMonth();;
+    return this.state.date.daysInMonth();;
   }
   firstDayOfMonth() {
-    const firstDayOfMonth = moment().startOf('month').format('d');
+    const firstDayOfMonth = this.state.date.startOf('month').format('d');
     return firstDayOfMonth
   }
   getCurrentDay() {
@@ -87,6 +91,17 @@ class MyCalendar extends React.Component {
       }
     );
   };
+  onPrevMounth = () => {
+    this.setState({
+      date: this.state.date.subtract(1, "month")
+    });
+  };
+  onNextMounth = () => {
+    this.setState({
+      date: this.state.date.add(1, "month")
+    });
+  }
+
   render() {
     const daysName = moment.weekdaysShort()
     const weekDaysName = daysName.map(day => {
@@ -142,128 +157,140 @@ class MyCalendar extends React.Component {
       return (
         <>
           <Card className='my-calendar'>
-            <Table>
-              <caption>{this.getCurrentMounth()}</caption>
-              <TableHead className='calendar-head'>
-                <TableRow>{weekDaysName}</TableRow>
-              </TableHead>
-              <TableBody>{viewDaysInMounth}</TableBody>
-            </Table>
-            <div onClick={this.showAddEventsForm} className="add-button btn">
-              <span>Add event</span>
-            </div>
+              <div className="wrapper-mounth">
+                <span onClick={e => {
+                  this.onPrevMounth();
+                }}
+                  class="button-prev"
+                />
+                <h3>{this.getCurrentMounth()}</h3>
+                <span onClick={e => {
+                  this.onNextMounth();
+                }}
+                  class="button-next"
+                />
+              </div>
+              <Table>
+                <TableHead className='calendar-head'>
+                  <TableRow>{weekDaysName}</TableRow>
+                </TableHead>
+                <TableBody>{viewDaysInMounth}</TableBody>
+              </Table>
+              <div onClick={this.showAddEventsForm} className="add-button btn">
+                <span>Add event</span>
+              </div>
           </Card>
         </>
-      )
-    }
+            )
+          }
     else if (this.state.showEventsDetails === true) {
-      console.log("this.state.selectedDay", this.state.selectedDay)
+              console.log("this.state.selectedDay", this.state.selectedDay)
       let eventsInDay = this.getEventsInDay(this.state.selectedDay)
-      console.log("eventsInDay", eventsInDay)
-      return (
+            console.log("eventsInDay", eventsInDay)
+            return (
         <EventsDetails
-          eventsInDay={eventsInDay}
-        />
-      )
-    }
+              eventsInDay={eventsInDay}
+            />
+            )
+          }
     else if (this.state.showAddEventsForm) {
       return (
         <Events
-          onAddEvents={(event) => this.onAddEvents(event)}
-          closeAddEventsForm={() => this.closeAddEventsForm()}
-        />
-      )
-    }
-  }
-}
-
-
+              onAddEvents={(event) => this.onAddEvents(event)}
+              closeAddEventsForm={() => this.closeAddEventsForm()}
+            />
+            )
+          }
+        }
+      }
+      
+      
 class Events extends React.Component {
-  constructor(props) {
-    super(props);
+              constructor(props) {
+              super(props);
     this.state = {
-      title: "",
-      time: "",
-      date: ""
-    }
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
+              title: "",
+            time: "",
+            date: ""
+          }
+          this.handleInputChange = this.handleInputChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
+        }
+      
   handleInputChange(event) {
     const value = event.target.value;
-    const name = event.target.name;
+            const name = event.target.name;
     this.setState({
-      [name]: value
-    });
-  }
-
+              [name]: value
+          });
+        }
+      
   handleSubmit(event) {
-    event.preventDefault();
-  }
-
+              event.preventDefault();
+          }
+        
   render() {
     //let date = moment(this.state.date, "DD-MM-YYYY").format("DD-MM-YYYY");
     return (
       <Card className="form-add-event">
-        <form onSubmit={this.handleSubmit}>
-          <label className="input-event">
-            <input
-              type="text"
-              name="title"
-              value={this.state.title}
-              onChange={this.handleInputChange}
-            />
-            <span className="label">Title</span>
-            <span className="border"></span>
-          </label>
-          <label className="input-event">
-            <input
-              type="text"
-              name="time"
-              value={this.state.time}
-              onChange={this.handleInputChange}
-            />
-            <span className="label">Time</span>
-            <span className="border"></span>
-          </label>
-          <label className="input-event">
-            <input
-              type="text"
-              name="date"
-              value={this.state.date}
-              onChange={this.handleInputChange}
-            />
-            <span className="label">Date</span>
-            <span className="border"></span>
-            </label>
-            <div className="add-event btn"
-              type='submit'
-              onClick={() => {
-                this.props.onAddEvents(this.state)
-                this.props.closeAddEventsForm()
-              }}
-            >
-              <span>Add event </span>
-            </div>
-        </form>
-      </Card>
-    );
-  }
-};
-
+              <form onSubmit={this.handleSubmit}>
+                <label className="input-event">
+                  <input
+                    type="text"
+                    name="title"
+                    value={this.state.title}
+                    onChange={this.handleInputChange}
+                  />
+                  <span className="label">Title</span>
+                  <span className="border"></span>
+                </label>
+                <label className="input-event">
+                  <input
+                    type="text"
+                    name="time"
+                    value={this.state.time}
+                    onChange={this.handleInputChange}
+                  />
+                  <span className="label">Time</span>
+                  <span className="border"></span>
+                </label>
+                <label className="input-event">
+                  <input
+                    type="text"
+                    name="date"
+                    value={this.state.date}
+                    onChange={this.handleInputChange}
+                  />
+                  <span className="label">Date</span>
+                  <span className="border"></span>
+                </label>
+                <div className="add-event btn"
+                  type='submit'
+                  onClick={() => {
+                    this.props.onAddEvents(this.state)
+                    this.props.closeAddEventsForm()
+                  }}
+                >
+                  <span>Add event </span>
+                </div>
+              </form>
+            </Card>
+            );
+          }
+        };
+        
 const EventsDetails = (props) => {
-  console.log("props", props.eventsInDay)
+              console.log("props", props.eventsInDay)
   return (
     <Card>
-      <div>Details event</div>
-      <div>{props.eventsInDay.map(e => {
-        // eslint-disable-next-line no-unused-expressions
-        <span>{e.title}</span>
-      })}</div>
-    </Card>
+              <div>Details event</div>
+              <div>{props.eventsInDay.map(e => {
+                // eslint-disable-next-line no-unused-expressions
+                <span>{e.title}</span>
+              })}</div>
+            </Card>
 
-  )
-}
-
-export default MyCalendar;
+            )
+          }
+          
+          export default MyCalendar;
