@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import './Events.css';
+import './AddEvents.css';
 
-class Events extends React.Component {
+class AddEvents extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,4 +76,4 @@ class Events extends React.Component {
   }
 };
 
-export default Events;
+export default AddEvents;

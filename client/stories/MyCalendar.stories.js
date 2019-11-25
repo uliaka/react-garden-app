@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import MyCalendar from '../src/components/MyCalendar/MyCalendar';
+import MyCalendar from '../src/components/MyCalendar/Calendar/MyCalendar.js';
 
 export default {
   title: 'MyCalendar',

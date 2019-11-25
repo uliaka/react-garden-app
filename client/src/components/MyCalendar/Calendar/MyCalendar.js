@@ -7,8 +7,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Events from './Events.js';
-import EventsDetails from './EventsDetails.js';
+import AddEvents from '../AddEvents/AddEvents.js';
+import EventsDetails from '../EventsDetails/EventsDetails.js';
 
 class MyCalendar extends React.Component {
   constructor(props) {
@@ -186,7 +186,7 @@ class MyCalendar extends React.Component {
     }
     else if (this.state.showAddEventsForm) {
       return (
-        <Events
+        <AddEvents
           onAddEvents={(event) => this.onAddEvents(event)}
           closeAddEventsForm={() => this.closeAddEventsForm()}
         />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import EventDetails from '../src/components/MyCalendar/EventsDetails.js';
+import EventDetails from '../src/components/MyCalendar/EventsDetails/EventsDetails.js';
 
 export default {
   title: 'EventDetails',
