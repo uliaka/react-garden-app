@@ -30,6 +30,7 @@ class MyCalendar extends React.Component {
     this.closeAddEventsForm = this.closeAddEventsForm.bind(this)
     this.onAddEvents = this.onAddEvents.bind(this)
     this.onDayClick = this.onDayClick.bind(this)
+    this.getDate = this.getDate.bind(this)
   }
 
   getCurrentMounth() {
@@ -45,14 +46,16 @@ class MyCalendar extends React.Component {
   getCurrentDay() {
     return Number.parseInt(moment().format("D"));
   }
-
-  getEventsInDay(d) {
+  getDate(d) {
     const startDate = this.state.date.format("DD-MM-YYYY")
+    return moment(startDate, "DD-MM-YYYY").add('days', d - 1).format("DD-MM-YYYY");
+  }
+  getEventsInDay(d) {
     let eventsInDay = []
     eventsInDay = this.state.events.filter((event) => {
       const checkDay = Number.parseInt(moment(event.date, "DD-MM-YYYY").format("D")) === d;
       if (checkDay) {
-        return moment(event.date, "DD-MM-YYYY").format("DD-MM-YYYY") === moment(startDate, "DD-MM-YYYY").add('days', d - 1).format("DD-MM-YYYY");;
+        return moment(event.date, "DD-MM-YYYY").format("DD-MM-YYYY") === this.getDate(d);
       }
     });
     return eventsInDay;
@@ -114,7 +117,7 @@ class MyCalendar extends React.Component {
       let currentDay = d === this.getCurrentDay() ? "today" : '';
       let viewEvents = 0 === this.getEventsInDay(d).length ? "no-events" : "show-events"
       daysInMonth.push(
-        <TableCell key={d} className={`calendar-day ${currentDay}`}>
+        <TableCell align="center" key={d} className={`calendar-day ${currentDay}`}>
           <span onClick={e => { this.onDayClick(e, d) }} >
             {d}
             <div className={` ${viewEvents}`}>{this.getEventsInDay(d).length}</div>
