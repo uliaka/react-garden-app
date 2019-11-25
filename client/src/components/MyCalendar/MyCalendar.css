@@ -86,16 +86,6 @@ body {
   padding: 3px;
 }
 
-.add-button {
-  position: absolute;
-  top: 70%;
-  left: 90%;
-  height: 40px;
-  width: 80px;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
-
 .add-event {
   position: absolute;
   cursor: pointer;

@@ -7,9 +7,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-
 
 class MyCalendar extends React.Component {
   constructor(props) {
@@ -62,8 +59,14 @@ class MyCalendar extends React.Component {
   }
 
   getEventsInDay(d) {
+    const startDate = this.state.date.format("DD-MM-YYYY")
     let eventsInDay = []
-    eventsInDay = this.state.events.filter(event => Number.parseInt(moment(event.date, "DD-MM-YYYY").format("D")) === d);
+    eventsInDay = this.state.events.filter((event) => { 
+      const checkDay = Number.parseInt(moment(event.date, "DD-MM-YYYY").format("D")) === d;
+      if (checkDay) {
+        return moment(event.date, "DD-MM-YYYY").format("DD-MM-YYYY") === moment(startDate, "DD-MM-YYYY").add('days', d - 1).format( "DD-MM-YYYY");;
+      }
+    });
     return eventsInDay;
   }
   showAddEventsForm() {
@@ -176,7 +179,7 @@ class MyCalendar extends React.Component {
                 </TableHead>
                 <TableBody>{viewDaysInMounth}</TableBody>
               </Table>
-              <div onClick={this.showAddEventsForm} className="add-button btn">
+              <div onClick={this.showAddEventsForm} className="add-event btn">
                 <span>Add event</span>
               </div>
           </Card>
