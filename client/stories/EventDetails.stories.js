@@ -22,6 +22,7 @@ const eventsInDay = [
     date: '22-11-2019'
   }
 ];
+const selectedDate = '22-11-2019';
 
 storiesOf('EventDetails', module)
-  .add('EventDetails', () => <EventDetails eventsInDay={eventsInDay} />)
+  .add('EventDetails', () => <EventDetails eventsInDay={eventsInDay} selectedDate={selectedDate}/>)

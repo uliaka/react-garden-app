@@ -31,6 +31,11 @@ class MyCalendar extends React.Component {
     this.onAddEvents = this.onAddEvents.bind(this)
     this.onDayClick = this.onDayClick.bind(this)
     this.getDate = this.getDate.bind(this)
+    this.weekDaysName = this.weekDaysName.bind(this)
+    this.emptyDayOfMounth = this.emptyDayOfMounth.bind(this)
+    this.daysInMonth = this.daysInMonth.bind(this)
+    this.totalGrid = this.totalGrid.bind(this)
+    this.viewDaysInMounth = this.viewDaysInMounth.bind(this)
   }
 
   getCurrentMounth() {
@@ -40,8 +45,7 @@ class MyCalendar extends React.Component {
     return this.state.date.daysInMonth();;
   }
   firstDayOfMonth() {
-    const firstDayOfMonth = this.state.date.startOf('month').format('d');
-    return firstDayOfMonth
+    return this.state.date.startOf('month').format('d');
   }
   getCurrentDay() {
     return Number.parseInt(moment().format("D"));
@@ -94,24 +98,29 @@ class MyCalendar extends React.Component {
       date: this.state.date.add(1, "month")
     });
   }
-
-  render() {
+  
+  weekDaysName = () => {
     const daysName = moment.weekdaysShort()
-    const weekDaysName = daysName.map(day => {
+    return daysName.map(day => {
       return (
         <th key={day}>
           {day}
         </th>
       );
-    });
-
+    }); 
+  }
+  
+  emptyDayOfMounth = () => {
     let emptyDayOfMounth = [];
     for (let i = 0; i < this.firstDayOfMonth(); i++) {
-      emptyDayOfMounth.push(
+       emptyDayOfMounth.push(
         <TableCell>{""}</TableCell>
       );
     }
-
+    return emptyDayOfMounth;
+  }
+  
+  daysInMonth = () => {
     let daysInMonth = [];
     for (let d = 1; d <= this.getDaysInMounth(); d++) {
       let currentDay = d === this.getCurrentDay() ? "today" : '';
@@ -125,8 +134,11 @@ class MyCalendar extends React.Component {
         </TableCell>
       );
     }
+    return daysInMonth;
+  };
 
-    let totalGrid = [...emptyDayOfMounth, ...daysInMonth];
+  totalGrid = () => {
+    let totalGrid = [...this.emptyDayOfMounth(), ...this.daysInMonth()];
     let rows = [];
     let cells = [];
     totalGrid.forEach((row, i) => {
@@ -141,11 +153,14 @@ class MyCalendar extends React.Component {
         rows.push(cells);
       }
     });
+    return rows;
+  };
 
-    let viewDaysInMounth = rows.map((d, i) => {
-      return <TableRow>{d}</TableRow>;
-    });
+   viewDaysInMounth = () => this.totalGrid().map((d, i) => {
+    return <TableRow>{d}</TableRow>;
+  });
 
+  render() {
     if (!this.state.showAddEventsForm && !this.state.showEventsDetails) {
       return (
         <>
@@ -165,9 +180,9 @@ class MyCalendar extends React.Component {
             </div>
             <Table>
               <TableHead className='calendar-head'>
-                <TableRow>{weekDaysName}</TableRow>
+                <TableRow>{this.weekDaysName()}</TableRow>
               </TableHead>
-              <TableBody>{viewDaysInMounth}</TableBody>
+              <TableBody>{this.viewDaysInMounth()}</TableBody>
             </Table>
             <div onClick={this.showAddEventsForm} className="add-event btn">
               <span>Add event</span>
@@ -177,10 +192,10 @@ class MyCalendar extends React.Component {
       )
     }
     else if (this.state.showEventsDetails === true) {
-      let eventsInDay = this.getEventsInDay(this.state.selectedDay)
       return (
         <EventsDetails
-          eventsInDay={eventsInDay}
+          selectedDate={this.getDate(this.state.selectedDay)}
+          eventsInDay={this.getEventsInDay(this.state.selectedDay)}
         />
       )
     }

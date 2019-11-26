@@ -45,6 +45,7 @@ class AddEvents extends React.Component {
             <input
               type="text"
               name="time"
+              placeholder="00:00"
               value={this.state.time}
               onChange={this.handleInputChange}
             />
@@ -55,6 +56,7 @@ class AddEvents extends React.Component {
             <input
               type="text"
               name="date"
+              placeholder="01-01-2019"
               value={this.state.date}
               onChange={this.handleInputChange}
             />
