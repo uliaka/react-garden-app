@@ -1,5 +1,5 @@
 import React from 'react';
-import './EventsDetails.css';
+import './EventsDetails.scss';
 
 const EventsDetails = (props) => {
   const events = props.eventsInDay

@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import './AddEvents.css';
+import './AddEvents.scss';
 
 class AddEvents extends React.Component {
   constructor(props) {
