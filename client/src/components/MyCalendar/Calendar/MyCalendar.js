@@ -82,6 +82,8 @@ class MyCalendar extends React.Component {
           key={d}
           className={`calendar-day ${currentDay}`}
           onClick={e => { this.onDayClick(e, d) }}
+          onMouseEnter={() => this.onMouseEnter(d)}
+          onMouseLeave={() => this.onMouseLeave()}
         >
           {d}
           <div className={` ${viewEvents}`}>{this.getEventsInDay(d).length}</div>
@@ -158,9 +160,21 @@ class MyCalendar extends React.Component {
       date: this.state.date.add(1, "month")
     });
   }
+  
+  onMouseEnter(d) {
+    this.setState({
+      selectedDay: d,
+      showEventsDetails: true
+    })
+  }
+  onMouseLeave() {
+    this.setState({
+      showEventsDetails: false
+    })
+  }
 
   render() {
-    if (!this.state.showAddEventsForm && !this.state.showEventsDetails) {
+    if (!this.state.showAddEventsForm ) {
       return (
         <>
           <div className='my-calendar'>
@@ -183,19 +197,16 @@ class MyCalendar extends React.Component {
               </TableHead>
               <TableBody>{this.viewDaysInMounth()}</TableBody>
             </Table>
-            <div onClick={this.showAddEventsForm} className="add-event btn">
-              <span>Add event</span>
+            <div onClick={this.showAddEventsForm} className="icon-plus">
             </div>
           </div>
+          {this.state.showEventsDetails &&
+            <EventsDetails
+              selectedDate={this.getDate(this.state.selectedDay)}
+              eventsInDay={this.getEventsInDay(this.state.selectedDay)}
+          />
+          }
         </>
-      )
-    }
-    else if (this.state.showEventsDetails === true) {
-      return (
-        <EventsDetails
-          selectedDate={this.getDate(this.state.selectedDay)}
-          eventsInDay={this.getEventsInDay(this.state.selectedDay)}
-        />
       )
     }
     else if (this.state.showAddEventsForm) {

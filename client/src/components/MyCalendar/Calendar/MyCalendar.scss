@@ -45,8 +45,7 @@ body {
 }
 
 .today {
-  background: rgb(180,248,249);
-  background: linear-gradient(0deg, rgba(180,248,249,1) 0%, rgba(255,255,255,1) 100%);
+  border: 1px solid rgb(219, 241, 241);;
 }
 
 .wrapper-mounth {
@@ -126,4 +125,38 @@ body {
 .btn span {
   position: relative;
   top: 11px;
+}
+
+.icon-plus {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  background-color: rgb(44, 108, 128);
+  position: relative;
+  cursor: pointer;
+  
+  &:after {
+    content: " ";
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    height: 5px;
+    margin-top: -3px;
+    top: 50%;
+    left: 20px;
+    right: 20px;
+    z-index: 9;
+  }
+  &:before {
+    content: " ";
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    width: 5px;
+    margin-left: -3px;
+    left: 50%;
+    top: 20px;
+    bottom: 20px;
+    z-index: 9;
+  }
 }
