@@ -29,7 +29,7 @@ class AddEvents extends React.Component {
   render() {
     //let date = moment(this.state.date, "DD-MM-YYYY").format("DD-MM-YYYY");
     return (
-      <Card className="form-add-event">
+      <div className="form-add-event">
         <form onSubmit={this.handleSubmit}>
           <label className="input-event">
             <input
@@ -73,7 +73,7 @@ class AddEvents extends React.Component {
             <span>Add event </span>
           </div>
         </form>
-      </Card>
+      </div>
     );
   }
 };

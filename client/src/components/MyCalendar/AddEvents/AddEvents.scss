@@ -1,3 +1,7 @@
+$backgroundColor: rgb(0,228,201);
+$backgrpundGradient: linear-gradient(312deg, rgba(0,228,201,1) 0%, rgba(28,164,230,1) 100%);
+$shadow: 1px 5px 18px #b3b3b4;
+
 .form-add-event {
     width: 30%;
     min-width: 400px;
@@ -6,33 +10,36 @@
     margin-right: auto;
     padding: 20px;
     text-align: left;
+    box-shadow: $shadow;
   }
   
-  .input-event {
+.input-event {
     position: relative;
     margin: auto;
     width: 100%;
     max-width: 280px;
-  }
-  .input-event .label {
+
+   .label {
     position: absolute;
     left: 0;
     font-size: 20px;
     color: #6e6e6e;
     margin-top: 3px;
   }
-  .input-event .border {
+
+ .border {
     position: absolute;
     bottom: -15px;
     left: 0;
     height: 2px;
     width: 100%;
-    background: #07f;
+    background: $backgroundColor;
+    background: $backgrpundGradient;
     transform: scaleX(0);
     transform-origin: 0 0;
-    transition: all 0.15s ease;
+    transition: all 0.5s ease;
   }
-  .input-event input {
+  input {
     width: 100%;
     border: 0;
     margin-top: 20px;
@@ -42,18 +49,38 @@
     font-weight: 500;
     border-bottom: 2px solid #c8ccd4;
   }
-  .input-event input:hover {
-    background-color: rgba(34,50,84,0.03);
-  }
   
-  .input-event input:focus {
+  input:focus {
     background-color: none;
     outline: none;
   }
-  .input-eventinput:focus + span {
-    color: #07f;
-    transform: translateY(-26px) scale(0.75);
-  }
-  .input-event input:focus + span + .border {
+
+  input:focus + span + .border {
     transform: scaleX(1);
   }
+}
+.add-event {
+  position: absolute;
+  cursor: pointer;
+  height: 40px;
+  width: 80px;
+  margin: 30px 20px 20px 0;
+}
+  
+.btn {
+  font-family: inherit;
+  display: block;
+  position: relative;
+  text-decoration: none;
+  border-radius: 15px;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  text-align: center;
+  background: $backgroundColor;
+  background: $backgrpundGradient;
+  
+  span {
+    position: relative;
+    top: 11px;
+  }
+}

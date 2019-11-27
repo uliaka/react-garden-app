@@ -160,7 +160,7 @@ class MyCalendar extends React.Component {
       date: this.state.date.add(1, "month")
     });
   }
-  
+
   onMouseEnter(d) {
     this.setState({
       selectedDay: d,
@@ -174,7 +174,7 @@ class MyCalendar extends React.Component {
   }
 
   render() {
-    if (!this.state.showAddEventsForm ) {
+    if (!this.state.showAddEventsForm) {
       return (
         <>
           <div className='my-calendar'>
@@ -197,14 +197,14 @@ class MyCalendar extends React.Component {
               </TableHead>
               <TableBody>{this.viewDaysInMounth()}</TableBody>
             </Table>
-            <div onClick={this.showAddEventsForm} className="icon-plus">
-            </div>
+          </div>
+          <div onClick={this.showAddEventsForm} className="icon-plus">
           </div>
           {this.state.showEventsDetails &&
             <EventsDetails
               selectedDate={this.getDate(this.state.selectedDay)}
               eventsInDay={this.getEventsInDay(this.state.selectedDay)}
-          />
+            />
           }
         </>
       )
